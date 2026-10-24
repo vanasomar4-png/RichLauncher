@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' app:; img-src 'self' app: data: https://cdn.modrinth.com; style-src 'self' 'unsafe-inline'; font-src 'self' app:; script-src 'self'; connect-src 'self' app:"
+    />
+    <meta name="color-scheme" content="dark" />
+    <title>RichLauncher</title>
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <link rel="stylesheet" href="css/assistant.css" />
+  </head>
+  <body>
+    <div class="app-background" aria-hidden="true"></div>
+
+    <div class="app-shell" id="app-shell">
+      <aside class="sidebar">
+        <img class="sidebar__logo" id="brand-logo" alt="RichLauncher" />
+        <nav class="sidebar__nav" id="sidebar-nav" aria-label="Разделы"></nav>
+      </aside>
+
+      <header class="topbar">
+        <img class="topbar__brand" id="brand-wordmark" alt="RichLauncher" />
+        <span class="topbar__title" id="topbar-title"></span>
+        <div class="topbar__actions">
+          <button class="btn btn--ghost btn--compact" id="logs-button" type="button" hidden>Журнал игры</button>
+          <button class="icon-button" id="assistant-button" type="button" aria-label="Помощник RichAI" title="Помощник RichAI"><span class="mc-icon mc-icon--ai-robot" aria-hidden="true"></span></button>
+          <button class="account-chip" id="account-button" type="button" aria-label="Аккаунты">
+            <span class="account-chip__avatar" id="account-avatar"></span>
+            <span class="account-chip__name" id="account-name">Войти</span>
+            <span class="icon icon--chevron" aria-hidden="true"></span>
+          </button>
+          <div class="window-controls">
+            <button class="icon-button icon-button--window" id="window-minimize" type="button" aria-label="Свернуть">
+              <span class="icon icon--minus" aria-hidden="true"></span>
+            </button>
+            <button class="icon-button icon-button--window icon-button--close" id="window-close" type="button" aria-label="Закрыть" title="Свернуть в трей (выход — через значок в трее)">
+              <span class="icon icon--close" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-host" id="page-host"></main>
+    </div>
+
+    <div id="modal-root"></div>
+    <div class="toast-stack" id="toast-root" aria-live="polite"></div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

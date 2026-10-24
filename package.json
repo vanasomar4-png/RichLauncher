@@ -1,0 +1,49 @@
+{
+  "name": "richlauncher",
+  "productName": "RichLauncher",
+  "version": "1.3.0",
+  "description": "Minecraft Java Edition launcher for Windows",
+  "main": "src/main/index.js",
+  "author": "RichLauncher",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "adm-zip": "0.6.1"
+  },
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "dev.richlauncher.app",
+    "productName": "RichLauncher",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "richlauncher-mark.png",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "RichLauncher-${version}.exe"
+    }
+  }
+}

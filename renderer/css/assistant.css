@@ -1,0 +1,208 @@
+/* RichAI assistant: top-bar button and chat panel (js/components/assistant.js). */
+#assistant-button .mc-icon {
+  width: 30px;
+  height: 30px;
+  filter: saturate(0.9) brightness(0.95);
+  transition: filter var(--duration-fast), transform var(--duration-base) var(--ease-spring);
+}
+
+#assistant-button:hover .mc-icon,
+#assistant-button[aria-expanded="true"] .mc-icon {
+  filter: none;
+  transform: scale(1.1);
+}
+
+#assistant-button[aria-expanded="true"] {
+  color: var(--color-accent);
+  background: rgba(var(--accent-rgb), 0.12);
+}
+
+.assistant {
+  position: fixed;
+  top: calc(var(--topbar-height) + 6px);
+  right: 16px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  height: min(520px, calc(100vh - var(--topbar-height) - 24px));
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-panel);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top right;
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+
+.assistant[hidden] {
+  display: none;
+}
+
+.assistant--open {
+  opacity: 1;
+  transform: none;
+}
+
+.assistant__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px 12px 18px;
+  border-bottom: 1px solid var(--color-border);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.assistant__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-success);
+  box-shadow: 0 0 10px var(--color-accent-glow);
+}
+
+.assistant__close {
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.assistant__close:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.assistant__messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  padding: 14px 16px;
+  overflow-y: auto;
+}
+
+.assistant__msg {
+  max-width: 92%;
+  padding: 10px 13px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  line-height: 1.45;
+  user-select: text;
+  animation: assistantMsgIn 220ms var(--ease-out);
+}
+
+.assistant__msg p + p,
+.assistant__msg p + ul,
+.assistant__msg ul + p {
+  margin-top: 8px;
+}
+
+.assistant__msg--bot {
+  align-self: flex-start;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-panel), #fff 7%);
+  color: var(--color-text);
+}
+
+.assistant__msg--user {
+  align-self: flex-end;
+  background: linear-gradient(180deg, var(--color-accent), var(--color-accent-strong));
+  color: var(--color-text-on-accent);
+  font-weight: 600;
+}
+
+.assistant__list {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.assistant__list li + li {
+  margin-top: 6px;
+}
+
+.assistant__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.assistant__chip {
+  padding: 6px 10px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-text-soft);
+  font-size: 12px;
+  transition: background var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast);
+}
+
+.assistant__chip:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.assistant__chip--route {
+  border-color: rgba(var(--accent-rgb), 0.45);
+  color: var(--color-accent);
+}
+
+.assistant__composer {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.assistant__input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-panel), #fff 4%);
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.assistant__input:focus {
+  outline: none;
+  border-color: var(--color-border-strong);
+}
+
+.assistant__send {
+  width: 40px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+  font-size: 15px;
+  transition: filter var(--duration-fast);
+}
+
+.assistant__send:hover {
+  filter: brightness(1.08);
+}
+
+@keyframes assistantMsgIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assistant,
+  .assistant__msg {
+    transition: none;
+    animation: none;
+  }
+}

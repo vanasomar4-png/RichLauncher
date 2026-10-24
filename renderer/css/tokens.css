@@ -1,0 +1,74 @@
+/* Design tokens. Every colour, radius, easing and duration used by the UI is defined here. */
+:root {
+  --font-ui: "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Inter", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+
+  --color-bg: #070d0b;
+  --color-surface: rgba(14, 24, 21, 0.72);
+  --color-surface-strong: rgba(10, 18, 16, 0.94);
+  --color-surface-hover: rgba(30, 48, 42, 0.8);
+  --color-border: rgba(168, 240, 208, 0.12);
+  --color-border-strong: rgba(168, 240, 208, 0.26);
+  --color-text: #eef6f2;
+  --color-text-soft: #a7bcb3;
+  --color-text-muted: #6f8880;
+  --color-text-on-accent: #0b1412;
+  --color-accent: #a8f0d0;
+  --color-accent-strong: #7de6b8;
+  --color-accent-glow: rgba(168, 240, 208, 0.35);
+  --color-danger: #ff8a80;
+  --color-warning: #ffd479;
+  --color-success: #7de6b8;
+  /* Neuro Rich brand yellow, only for the author credit. */
+  --color-neuro: #fff000;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  --shadow-card: 0 18px 48px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 36px rgba(168, 240, 208, 0.22);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 160ms;
+  --duration-base: 280ms;
+  --duration-slow: 560ms;
+
+  /* Channels of the colours above, for rgba(var(--accent-rgb), 0.2). The Appearance settings override them. */
+  --accent-rgb: 168, 240, 208;
+  --accent-strong-rgb: 125, 230, 184;
+  --bg-rgb: 7, 13, 11;
+  --surface-rgb: 14, 24, 21;
+  --surface-strong-rgb: 10, 18, 16;
+  --hover-rgb: 30, 48, 42;
+  --color-panel: #0f1a16;
+  --bg-dim: 0;
+  --bg-blur: 0px;
+
+  --sidebar-width: 92px;
+  --topbar-height: 64px;
+  --gutter: 36px;
+}
+
+/* The launcher is dark-only by design; the browser colour scheme must match. */
+:root {
+  color-scheme: dark;
+}
+
+/* Motion setting (Settings -> Appearance). */
+html[data-motion="reduced"] {
+  --duration-fast: 90ms;
+  --duration-base: 140ms;
+  --duration-slow: 220ms;
+}
+
+html[data-motion="off"] *,
+html[data-motion="off"] *::before,
+html[data-motion="off"] *::after {
+  animation-duration: 1ms !important;
+  animation-delay: 0ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 1ms !important;
+  transition-delay: 0ms !important;
+}
